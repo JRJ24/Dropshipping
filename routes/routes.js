@@ -69,7 +69,6 @@ router.post('/add', upload, (req, res) => {
     });
 });
 
-
 router.post('/edit/:id', upload, async (req, res) => {
     const userID = req.params.id;
     let new_photo = '';

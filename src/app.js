@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const router = require('../routes/routes'); // Adjust the path as necessary
+const routerProduct = require('../routes/routesProduct');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -14,6 +15,9 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
     console.log('Connected to MongoDB');
 });
+
+
+
 
 //middleware
 app.use(express.urlencoded({ extended: false }));
@@ -35,7 +39,7 @@ app.use((req, res, next) => {
 app.set('view engine', 'ejs');
 
 app.use('/', router); // Use the router for handling routes
-
+app.use('/ViewProduct', routerProduct);
 app.use('/upload', express.static('upload'));
 
 app.listen(PORT, () => {

@@ -82,6 +82,7 @@ router.post('/edit/:id', upload, async (req, res) => {
         }
         catch (error) {
             console.error('Error deleting old image:', error);
+            
         }
     }else{
         new_photo = req.body.old_image;

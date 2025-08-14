@@ -2,14 +2,14 @@
 <link rel="stylesheet" href="/views/css/store.css">
 
 <div class="container py-4">
-  <h1 class="mb-4 text-center">Tienda Virtual</h1>
+  <h1 class="mb-4 text-center">DropTrendz</h1>
 
 
-  <form action="/products/OnlineStore" method="get" class="row g-3 mb-4">
+   <form action="/products/OnlineStore" method="get" class="row g-3 mb-5">
     <div class="col-md-6">
       <input 
         type="text" 
-        class="form-control" 
+        class="form-control form-control-lg border-primary" 
         name="name" 
         placeholder="Buscar producto..." 
         value="<%= searchName %>" />
@@ -22,27 +22,76 @@
         <% }) %>
       </select>
     </div>
-    <div class="col-md-2">
-      <button type="submit" class="btn btn-primary w-100">Buscar</button>
+   <div class="col-md-2">
+      <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold">
+        <i class="fas fa-search me-2"></i>Buscar
+      </button>
     </div>
   </form>
 
-
   <% Object.keys(products).forEach(category => { %>
-    <h2 class="text-danger mb-3"><%= category %></h2>
-    <div class="inventary-grid">
-      <% products[category].forEach(product => { %>
-        <article class="product-card">
-          <div>
-            <img src="/upload/<%= product.image %>" width="100" class="img-thumbnail mt-2">
+    <div class="mb-5">
+      <h2 class="text-info mb-4 fw-bold border-bottom border-info pb-2">
+        <i class="fas fa-tags me-2"></i><%= category %>
+      </h2>
+      
+     <div class="row g-4">
+        <% products[category].forEach(product => { %>
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card h-100 shadow-sm border-0 product-card-hover">
+              <div class="card-img-top d-flex justify-content-center align-items-center bg-light" style="height: 200px;">
+                <img src="/upload/<%= product.image %>" 
+                     class="img-fluid rounded" 
+                     style="max-height: 180px; max-width: 100%; object-fit: contain;"
+                     alt="<%= product.name %>">
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-dark fw-bold mb-2"><%= product.name %></h5>
+                <!-- Descripción comentada como en el original -->
+                <!-- <p class="card-text text-muted small flex-grow-1"><%= product.description %></p> -->
+                <div class="mt-auto">
+                  <h4 class="text-primary fw-bold mb-3">$<%= product.price %></h4>
+                  <!-- <button class="btn btn-outline-primary w-100 fw-bold">
+                    <i class="fas fa-shopping-cart me-2"></i>Agregar al Carrito
+                  </button> -->
+                </div>
+              </div>
+            </div>
           </div>
-          <h3><%= product.name %></h3>
-          <p><%= product.description %></p>
-          <span>$<%= product.price %></span>
-        </article>
-      <% }) %>
+        <% }) %>
+      </div>
     </div>
   <% }) %>
 </div>
+
+<style>
+  body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .product-card-hover {
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .product-card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3) !important;
+  }
+  
+  .border-primary:focus {
+    border-color: #0d6efd !important;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+  }
+  
+  .text-info {
+    color: #0dcaf0 !important;
+  }
+  
+  .border-info {
+    border-color: #0dcaf0 !important;
+  }
+</style>
 
 <%- include('layouts/footerStore') %>

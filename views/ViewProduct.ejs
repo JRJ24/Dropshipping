@@ -16,17 +16,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% products.forEach((products, viewProduct) => { %>
+                            <% products.forEach((products, ViewProduct) => { %>
                                 <tr class="align-middle">
-                                    <td><%= ++viewProduct %></td>
+                                    <td><%= ++ViewProduct %></td>
                                     <td><%= products.name %></td>
                                     <td><%= products.description %></td>
                                     <td><%= products.stock %></td>
                                     <td><%= products.price %></td>
                                     <td><img src="/upload/<%= products.image %>" width="50" class="img-thumbnail"></td>
                                     <td>
-                                        <a href="/edit/<%= products._id%>" class="fa fa-edit fa-lg"></a>
-                                        <a href="/delete/<%= products._id%>" class="fa fa-trash fa-lg"></a>
+                                        <a href="/products/edit/<%= products._id%>" class="fa fa-edit fa-lg"></a>
+                                        <a href="/products/delete/<%= products._id%>" class="fa fa-trash fa-lg"></a>
                                     </td>
                                 </tr>
                             <% }) %>

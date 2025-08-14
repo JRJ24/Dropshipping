@@ -32,6 +32,7 @@ router.get('/add', (req, res) => {
     res.render('addUser', { titulo: 'AddUser' });
 });
 
+
 router.get('/viewUser', getUsers);
 
 router.get('/edit/:id', editUserGet);

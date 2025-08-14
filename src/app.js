@@ -8,15 +8,12 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 // Use environment variable for MongoDB connection string
-mongoose.connect(process.env.DB_URILocal);
+mongoose.connect(process.env.DB_URI);
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
     console.log('Connected to MongoDB');
 });
-
-
-
 
 //middleware
 app.use(express.urlencoded({ extended: false }));

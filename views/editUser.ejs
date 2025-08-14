@@ -6,7 +6,7 @@
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <h1>Editando usuario</h1>
-                <form id="add-form" action="/edit/<%= users._id%>" method="post" enctype="multipart/form-data">
+                <form id="add-form" action="/user/edit/<%= users._id%>" method="post" enctype="multipart/form-data">
                     <div class="mb3">
                         <label for="name" class="form-label">Name: </label>
                         <input type="text" class="form-control" value="<%= users.name %>" id="name" name="name" placeholder="Enter your name" required />
@@ -33,6 +33,7 @@
 
                     <div class="mb3">
                         <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                        <a href="/viewUser" class="btn btn-secondary mt-3">Cancelar</a>
                     </div>
                 </form>
             </div>

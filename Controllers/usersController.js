@@ -18,6 +18,7 @@ const editUserGet = async (req, res) => {
         res.render('editUser', { titulo: 'EditUser', users: user });
     }
     catch (error) {
+        
         console.error(error);
         res.status(500).send('Error retrieving user');
     }
@@ -33,7 +34,7 @@ const addUser = (req, res) => {
     });
 
     user.save().then(() => {
-        res.redirect('/viewUser');
+        res.redirect('/user/viewUser');
     }).catch(err => {
         console.error(err);
         res.status(500).send('Error saving user');
@@ -67,7 +68,7 @@ const editUserPost = async (req, res) => {
             photo: new_photo
         });
 
-        res.redirect('/viewUser');
+        res.redirect('/user/viewUser');
     } catch (error) {
         console.error(error);
         res.status(500).send('Error updating user');

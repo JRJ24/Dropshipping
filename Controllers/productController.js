@@ -1,12 +1,12 @@
-const express = require("express");
-const multer = require("multer")
-const path = require("path");
+//const express = require("express");
+// const multer = require("multer")
+//const path = require("path");
 const Product = require("../models/products");
 
 const GetProduct = async (req, res) => {
   try {
     const products = await Product.find();
-    res.json(products);
+      res.render('viewProduct', { titulo: 'ViewProduct', products: products });
   } catch (error){
     res.status(500).json({
       mensaje: "Error al obtener los productos", error

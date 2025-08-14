@@ -8,25 +8,25 @@
                             <tr>
                                 <th scope="col">ID</th>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Teléfono</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Stock</th>
+                                <th scope="col">Precio</th>
                                 <th scope="col">Foto</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <% users.forEach((users, viewUser) => { %>
+                            <% products.forEach((products, viewProduct) => { %>
                                 <tr class="align-middle">
-                                    <td><%= ++viewUser %></td>
-                                    <td><%= users.name %></td>
-                                    <td><%= users.email %></td>
-                                    <td><%= users.phone %></td>
+                                    <td><%= ++viewProduct %></td>
+                                    <td><%= products.name %></td>
+                                    <td><%= products.description %></td>
+                                    <td><%= products.stock %></td>
+                                    <td><%= products.price %></td>
+                                    <td><img src="/upload/<%= products.image %>" width="50" class="img-thumbnail"></td>
                                     <td>
-                                        <img src="/upload/<%= users.photo %>" width="50" class="img-thumbnail">
-                                    </td>
-                                    <td>
-                                        <a href="/edit/<%= users._id%>" class="fa fa-edit fa-lg"></a>
-                                        <a href="/delete/<%= users._id%>" class="fa fa-trash fa-lg"></a>
+                                        <a href="/edit/<%= products._id%>" class="fa fa-edit fa-lg"></a>
+                                        <a href="/delete/<%= products._id%>" class="fa fa-trash fa-lg"></a>
                                     </td>
                                 </tr>
                             <% }) %>

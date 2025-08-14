@@ -67,7 +67,7 @@ const ShowDeleteProduct = async (req, res) => {
 const DeleteProduct = async (req, res) => {
   try {
     await Product.findByIdAndDelete(req.params.id);
-    res.redirect('/ViewProduct');
+    res.redirect('/products/ViewProduct');
   } catch (error) {
     res.status(400).json({ mensaje: 'Error al eliminar producto', error });
   }

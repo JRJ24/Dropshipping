@@ -23,8 +23,8 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage }).single('photo');
 
-router.get('/', (req, res) => {
-    res.render('index', { titulo: 'Inicio' });
+router.get('/admin', (req, res) => {
+    res.render('indexAdmin', { titulo: 'Inicio' });
 });
 
 router.get('/user/add', (req, res) => {

@@ -1,0 +1,48 @@
+<%- include('layouts/headerStore') %>
+<link rel="stylesheet" href="/views/css/store.css">
+
+<div class="container py-4">
+  <h1 class="mb-4 text-center">Tienda Virtual</h1>
+
+
+  <form action="/products/OnlineStore" method="get" class="row g-3 mb-4">
+    <div class="col-md-6">
+      <input 
+        type="text" 
+        class="form-control" 
+        name="name" 
+        placeholder="Buscar producto..." 
+        value="<%= searchName %>" />
+    </div>
+    <div class="col-md-4">
+      <select class="form-select" name="category">
+        <option value="all" <%= selectedCategory === "all" ? "selected" : "" %>>Todas las categorías</option>
+        <% categories.forEach(cat => { %>
+          <option value="<%= cat %>" <%= selectedCategory === cat ? "selected" : "" %>><%= cat %></option>
+        <% }) %>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <button type="submit" class="btn btn-primary w-100">Buscar</button>
+    </div>
+  </form>
+
+
+  <% Object.keys(products).forEach(category => { %>
+    <h2 class="text-danger mb-3"><%= category %></h2>
+    <div class="inventary-grid">
+      <% products[category].forEach(product => { %>
+        <article class="product-card">
+          <div>
+            <img src="/upload/<%= product.image %>" width="100" class="img-thumbnail mt-2">
+          </div>
+          <h3><%= product.name %></h3>
+          <p><%= product.description %></p>
+          <span>$<%= product.price %></span>
+        </article>
+      <% }) %>
+    </div>
+  <% }) %>
+</div>
+
+<%- include('layouts/footerStore') %>

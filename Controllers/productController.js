@@ -1,6 +1,4 @@
-//const express = require("express");
-// const multer = require("multer")
-//const path = require("path");
+
 const Product = require("../models/products");
 
 const GetProduct = async (req, res) => {

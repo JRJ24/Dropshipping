@@ -4,7 +4,7 @@ const multer = require('multer');
 const path = require('path');
 const User = require('../models/users');
 const { GetProduct, GetProductById, SaveProduct,UpdateProduct,
-DeleteProduct, ShowDeleteProduct } = require("../Controllers/productController");
+DeleteProduct, ShowDeleteProduct, GetStoreProducts } = require("../Controllers/productController");
 const { getUsers, editUserGet, addUser, editUserPost } = require('../Controllers/usersController');
 
 const fs = require('fs');
@@ -23,8 +23,22 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage }).single('photo');
 
+router.get('/',async (req, res) => {
+    try
+    {
+    const users = await User.find({});
+    res.render('indexAdmin',{titulo: 'Inicio', users: users});
+    }catch (error) {
+        console.log(error);
+        req.json({
+            message: error.message
+        });
+        res.redirect('/');
+    }
+})
+
 router.get('/admin', (req, res) => {
-    res.render('indexAdmin', { titulo: 'Inicio' });
+    res.render('indexAdmin', { titulo: 'Begin' });
 });
 
 router.get('/user/add', (req, res) => {
@@ -53,5 +67,9 @@ router.post('/products/edit/:id', upload, UpdateProduct);
 router.get('/products/delete/:id', ShowDeleteProduct);
 router.post('/products/delete/:id', DeleteProduct);
 router.post('/products/add/', upload, SaveProduct);
+//
+//  OnlineStore routers
+//
+router.get('/products/OnlineStore', GetStoreProducts);
 
 module.exports = router;

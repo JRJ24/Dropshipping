@@ -1,5 +1,18 @@
 const User = require('../models/users');
 
+const loginUser = async (req, res) => {
+    try {
+        const user = await User.find({where:{email:req.body.email,password:req.body.password}});
+        if (!user) {
+            return res.status(400).send('Email or password incorrect');
+        }
+        res.render('editUser', { titulo: 'EditUser', users: user });
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).send('Error while login');
+    }
+}
 const getUsers = async (req, res) => {
     try {
         const users = await User.find();
@@ -78,5 +91,6 @@ module.exports = {
     getUsers,
     editUserGet,
     addUser,
-    editUserPost
+    editUserPost,
+    loginUser
 };

@@ -5,7 +5,7 @@ const path = require('path');
 const User = require('../models/users');
 const { GetProduct, GetProductById, SaveProduct,UpdateProduct,
 DeleteProduct } = require("../Controllers/productController");
-const { getUsers, editUserGet, addUser, editUserPost } = require('../Controllers/usersController');
+const { getUsers, editUserGet, addUser, editUserPost, loginUser } = require('../Controllers/usersController');
 // const Product = require("../models/products");
 
 const fs = require('fs');
@@ -39,6 +39,8 @@ router.get('/edit/:id', editUserGet);
 router.post('/add', upload, addUser);
 
 router.post('/edit/:id', upload, editUserPost);
+
+router.post('/login',loginUser);
 
 
 

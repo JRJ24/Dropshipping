@@ -7,13 +7,12 @@
                         <thead class="table-dark">
                             <tr>
                                 <th scope="col">ID</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Descripción</th>
-                                <th scope="col">Categoría</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Description</th>
                                 <th scope="col">Stock</th>
-                                <th scope="col">Precio</th>
-                                <th scope="col">Foto</th>
-                                <th scope="col">Acciones</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Photo</th>
+                                <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -24,7 +23,7 @@
                                     <td><%= products.description %></td>
                                     <td><%= products.category %></td>
                                     <td><%= products.stock %></td>
-                                    <td><%= products.price %></td>
+                                    <td>$<%= products.price %></td>
                                     <td><img src="/upload/<%= products.image %>" width="50" class="img-thumbnail"></td>
                                     <td>
                                         <a href="/products/edit/<%= products._id%>" class="fa fa-edit fa-lg"></a>

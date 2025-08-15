@@ -1,4 +1,5 @@
 <%- include('layouts/header') %>
+
 <div class="container">
         <div class="row mb-4">
             <div class="col-lg-12">
@@ -21,7 +22,6 @@
                                     <td><%= ++ViewProduct %></td>
                                     <td><%= products.name %></td>
                                     <td><%= products.description %></td>
-                                    <td><%= products.category %></td>
                                     <td><%= products.stock %></td>
                                     <td>$<%= products.price %></td>
                                     <td><img src="/upload/<%= products.image %>" width="50" class="img-thumbnail"></td>
@@ -37,5 +37,5 @@
             </div>
         </div>
     </div>
-
 <%- include('layouts/footer') %>
+

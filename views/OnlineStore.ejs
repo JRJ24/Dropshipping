@@ -1,6 +1,4 @@
 <%- include('layouts/headerStore') %>
-<link rel="stylesheet" href="/views/css/store.css">
-
 <div class="container py-4">
   <h1 class="mb-4 text-center">DropTrendz</h1>
 
@@ -11,12 +9,12 @@
         type="text" 
         class="form-control form-control-lg border-primary" 
         name="name" 
-        placeholder="Buscar producto..." 
+        placeholder="Find Product..." 
         value="<%= searchName %>" />
     </div>
     <div class="col-md-4">
       <select class="form-select" name="category">
-        <option value="all" <%= selectedCategory === "all" ? "selected" : "" %>>Todas las categorías</option>
+        <option value="all" <%= selectedCategory === "all" ? "selected" : "" %>>All the categories</option>
         <% categories.forEach(cat => { %>
           <option value="<%= cat %>" <%= selectedCategory === cat ? "selected" : "" %>><%= cat %></option>
         <% }) %>
@@ -24,7 +22,7 @@
     </div>
    <div class="col-md-2">
       <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold">
-        <i class="fas fa-search me-2"></i>Buscar
+        <i class="fas fa-search me-2"></i>Search
       </button>
     </div>
   </form>
@@ -77,21 +75,21 @@
   
   .product-card-hover:hover {
     transform: translateY(-8px);
-    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3) !important;
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
   }
   
   .border-primary:focus {
-    border-color: #0d6efd !important;
+    border-color: #0d6efd ;
     box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
   }
   
   .text-info {
-    color: #0dcaf0 !important;
+    color: #0dcaf0;
   }
   
   .border-info {
-    border-color: #0dcaf0 !important;
+    border-color: #0dcaf0;
   }
 </style>
 
-<%- include('layouts/footerStore') %>
+<%- include('layouts/footer') %>

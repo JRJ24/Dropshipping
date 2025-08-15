@@ -74,34 +74,23 @@ const DeleteProduct = async (req, res) => {
 };
 
 
-
-// Agrega esta función a tu productController.js
-
 const GetStoreProducts = async (req, res) => {
   try {
-    // Obtener parámetros de búsqueda de la query string
     const { name = '', category = 'all' } = req.query;
     
-    // Construir filtro de búsqueda
     let filter = {};
     
-    // Filtrar por nombre si se proporciona
     if (name.trim()) {
-      filter.name = { $regex: name, $options: 'i' }; // Búsqueda insensible a mayúsculas
+      filter.name = { $regex: name, $options: 'i' }; 
     }
     
-    // Filtrar por categoría si no es "all"
     if (category !== 'all') {
       filter.category = category;
     }
-    
-    // Obtener todos los productos que coincidan con el filtro
     const allProducts = await Product.find(filter);
-    
-    // Obtener todas las categorías únicas para el dropdown
+
     const categories = await Product.distinct('category');
     
-    // Agrupar productos por categoría
     const productsByCategory = {};
     
     allProducts.forEach(product => {
@@ -111,7 +100,6 @@ const GetStoreProducts = async (req, res) => {
       productsByCategory[product.category].push(product);
     });
     
-    // Renderizar la vista con los datos
     res.render('OnlineStore', {
       titulo: 'Tienda Virtual',
       products: productsByCategory,

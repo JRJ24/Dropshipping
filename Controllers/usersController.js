@@ -1,17 +1,49 @@
 const User = require('../models/users');
 
-const loginUser = async (req, res) => {
+const loginUserPost = async (req, res) => {
     try {
-        const user = await User.find({where:{email:req.body.email,password:req.body.password}});
+        console.log(`passwor: ${req.body.password}, email: ${req.body.email}`)
+        const user = await User.findOne({email:req.body.email,password:req.body.password});
         if (!user) {
             return res.status(400).send('Email or password incorrect');
-        }
-        res.render('loginSuccess', user );
+        } 
+        console.log(user);
+        res.render('loginSuccess', {titulo : 'loginSuccess', user: user });
     }
     catch (error) {
         console.error(error);
         res.status(500).send('Error while login');
     }
+}
+
+const loginUserGet = async (req, res) => {
+    res.render('login' , {titulo : 'login'});
+}
+
+const registerUserPost = (req, res) => {
+    console.log('/');
+    const user = new User({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+        phone: req.body.phone,
+        photo: req.file.filename 
+    });
+
+    user.save().then(() => {
+        if (user.isAdmin){
+            res.redirect('/products/ViewProduct');
+        } else {
+            res.redirect('/products/OnlineStore');
+        }
+    }).catch(err => {
+        console.error(err);
+        res.status(500).send('Error saving user');
+    });
+}
+
+const registerUserGet = (req, res) => {
+   res.render('register' , {titulo : 'register'})
 }
 
 // const loginSuccess = async (req, res) => {
@@ -107,5 +139,8 @@ module.exports = {
     editUserGet,
     addUser,
     editUserPost,
-    loginUser
+    loginUserGet,
+    loginUserPost,
+    registerUserGet,
+    registerUserPost
 };

@@ -1,3 +1,4 @@
+
 <%- include('layouts/header') %>
 <div class="container py-5">
   <h1>Bienvenido, <%= user.name %> 👋</h1>
@@ -5,10 +6,14 @@
 </div>
 
 <script>
-  // Insertamos un literal JSON seguro. Evitamos cerrar etiquetas <script> con este reemplazo.
-  const userToken =  JSON.stringify(user).replace(/</g, '\\u003c') ;
-  localStorage.setItem('user', JSON.stringify(userToken));
-  // Redirige donde prefieras:
-  window.location.href = '/ViewProduct';
+  const user = <%- JSON.stringify(user).replace(/</g, '\\u003c') %>;
+  localStorage.setItem('user', JSON.stringify(user));
+  if (user.isAdmin) {
+      window.location.href = '/products/ViewProduct';
+  } else {
+      window.location.href = '/products/OnlineStore';
+  }
+  
 </script>
+
 <%- include('layouts/footer') %>

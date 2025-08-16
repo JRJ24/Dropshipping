@@ -6,13 +6,27 @@ const loginUser = async (req, res) => {
         if (!user) {
             return res.status(400).send('Email or password incorrect');
         }
-        res.render('editUser', { titulo: 'EditUser', users: user });
+        res.render('loginSuccess', user );
     }
     catch (error) {
         console.error(error);
         res.status(500).send('Error while login');
     }
 }
+
+// const loginSuccess = async (req, res) => {
+//     try {
+//         const user = 
+//         if (!user) {
+//             return res.status(400).send('Email or password incorrect');
+//         }
+//         res.render('editUser', { titulo: 'EditUser', users: user });
+//     }
+//     catch (error) {
+//         console.error(error);
+//         res.status(500).send('Error while login');
+//     }
+// } 
 const getUsers = async (req, res) => {
     try {
         const users = await User.find();

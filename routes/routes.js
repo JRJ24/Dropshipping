@@ -4,9 +4,11 @@ const multer = require('multer');
 const path = require('path');
 const User = require('../models/users');
 const { GetProduct, GetProductById, SaveProduct,UpdateProduct,
-DeleteProduct } = require("../Controllers/productController");
-const { getUsers, editUserGet, addUser, editUserPost, loginUser } = require('../Controllers/usersController');
+DeleteProduct, ShowDeleteProduct, GetStoreProducts } = require("../Controllers/productController");
+
 // const Product = require("../models/products");
+
+const { getUsers, editUserGet, addUser, editUserPost, loginUser } = require('../Controllers/usersController');
 
 const fs = require('fs');
 
@@ -24,34 +26,54 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage }).single('photo');
 
-router.get('/', (req, res) => {
-    res.render('index', { titulo: 'Inicio' });
+router.get('/',async (req, res) => {
+    try
+    {
+    const users = await User.find({});
+    res.render('indexAdmin',{titulo: 'Inicio', users: users});
+    }catch (error) {
+        console.log(error);
+        req.json({
+            message: error.message
+        });
+        res.redirect('/');
+    }
+})
+
+router.get('/admin', (req, res) => {
+    res.render('indexAdmin', { titulo: 'Begin' });
 });
 
-router.get('/add', (req, res) => {
+router.get('/user/add', (req, res) => {
     res.render('addUser', { titulo: 'AddUser' });
 });
 
-router.get('/viewUser', getUsers);
 
-router.get('/edit/:id', editUserGet);
+router.get('/products/add', (req, res) => {
+    res.render('addProduct', { titulo: 'AddProducts' });
+});
 
-router.post('/add', upload, addUser);
-
-router.post('/edit/:id', upload, editUserPost);
-
+// =========================
+// User Routes
+// =========================
+router.get('/user/viewUser', getUsers);
+router.get('/user/edit/:id', editUserGet);
+router.post('/user/edit/:id', upload, editUserPost);
+router.post('/user/add', upload, addUser);
 router.post('/login',loginUser);
 
-
-
-
-// Products routes
-
-router.get('/viewProduct', GetProduct);
-// router.get('/:id', GetProductById)
-// router.post('/', SaveProduct);
-// router.put('/:id', UpdateProduct);
-// router.delete('/:id', DeleteProduct);
-
+// =========================
+// Product Routes
+// =========================
+router.get('/products/ViewProduct', GetProduct);
+router.get('/products/edit/:id', GetProductById);
+router.post('/products/edit/:id', upload, UpdateProduct);
+router.get('/products/delete/:id', ShowDeleteProduct);
+router.post('/products/delete/:id', DeleteProduct);
+router.post('/products/add/', upload, SaveProduct);
+//
+//  OnlineStore routers
+//
+router.get('/products/OnlineStore', GetStoreProducts);
 
 module.exports = router;

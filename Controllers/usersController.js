@@ -43,7 +43,7 @@ const registerUserPost = (req, res) => {
 }
 
 const registerUserGet = (req, res) => {
-   res.render('register' , {titulo : 'register'})
+    res.render('register' , {titulo : 'register'})
 }
 
 // const loginSuccess = async (req, res) => {

@@ -34,9 +34,7 @@ app.use((req, res, next) => {
 //configuring view engine
 app.set('view engine', 'ejs');
 
-app.use('/', router); // Use the router for handling routes
-//app.use('/ViewProduct', routerProduct);
-//app.use('/upload', express.static('upload'));
+app.use('/', router); 
 const path = require('path');
 app.use('/upload', express.static(path.join(__dirname, '../upload')));// de esta fomra la descripcion de las imagenes son un poco mas descriptivas en lugar de solo la fecha y hora exacta, ya que posee el nombre de la imagen 
 app.listen(PORT, () => {

@@ -41,6 +41,7 @@ const SaveProduct = async (req, res) => {
       name: req.body.name,
       description: req.body.description,
       price: req.body.price,
+      category: req.body.category,
       stock: req.body.stock,
       image: req.file ? req.file.filename : null 
     });

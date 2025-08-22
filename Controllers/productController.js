@@ -74,7 +74,6 @@ const DeleteProduct = async (req, res) => {
   }
 };
 
-
 const GetStoreProducts = async (req, res) => {
   try {
     const { name = '', category = 'all' } = req.query;
